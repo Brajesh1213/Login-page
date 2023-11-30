@@ -1,6 +1,7 @@
 import  express  from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
+import userRoutes from './routes/User.route.js'
 
 import mongoose from 'mongoose';
 import { configDotenv } from 'dotenv';
@@ -15,3 +16,4 @@ const app=express();
 app.listen(3000,()=>{
     console.log("serever listen 3000");
 })
+app.use("/api/user",userRoutes);
