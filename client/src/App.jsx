@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import About from "./pages/About";
 import Signin from "./pages/Signin";
-import Sinup from "./pages/Sinup";
+import Sinup from "./pages/Signup";
 import Profile from "./Profile";
 import Header from "./components/Header";
 
