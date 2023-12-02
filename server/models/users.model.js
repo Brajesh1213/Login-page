@@ -19,6 +19,11 @@ const userSchema= new mongoose.Schema({
         require:true,
         
     },
+    profilePicture:{
+        type:String,
+        default:"https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+
+    },
 
 },
 {timestamps:true}

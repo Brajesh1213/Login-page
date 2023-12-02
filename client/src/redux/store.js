@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
-  key: 'root',
+  key: 'root', 
   version: 1,
   storage, // Corrected the import and usage of storage
 };
