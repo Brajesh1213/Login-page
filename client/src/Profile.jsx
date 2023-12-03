@@ -63,7 +63,7 @@ const Profile = () => {
           }}
         />
         <img
-          src={currentUser.profilePicture}
+          src={formdata.profilePicture || currentUser.profilePicture}
           alt="profile"
           onClick={() => fileRef.current.click()}
           className="h-24 mt-2 w-24 self-center cursor-pointer rounded-full object-cover"
