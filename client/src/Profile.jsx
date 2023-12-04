@@ -10,7 +10,7 @@ import {
 import {  useNavigate } from 'react-router-dom'
 import { app } from "./firebase";
 import{ useDispatch } from 'react-redux';
-import {updateUserFailure,updateUserSuccess,updateUserStart, deleteUserFailure, deleteUserStart,deleteUserSuccess} from './redux/user/userSlice.js'
+import {updateUserFailure,updateUserSuccess,updateUserStart, deleteUserFailure, deleteUserStart,deleteUserSuccess, signOut} from './redux/user/userSlice.js'
 
 const Profile = () => {
   const { currentUser ,loading,error} = useSelector((state) => state.user);
@@ -110,6 +110,20 @@ const handleDeleteAccount = async () =>{
     }
   };
 
+  //signout
+  const handleSignout = async () =>{
+    try{
+      
+    await fetch('/app/auth/signout');
+    
+    dispatch(signOut());
+    }
+    catch(error){
+      console.log(error);
+    }
+
+  }
+
 
   // console.log(formdata)
   return (
@@ -171,7 +185,7 @@ const handleDeleteAccount = async () =>{
       </form>
       <div className="flex justify-between mt-5">
         <span className="text-red-600 cursor-pointer" onClick={handleDeleteAccount}>Delete account</span>
-        <span className="text-red-600 cursor-pointer">Sign Out</span>
+        <span className="text-red-600 cursor-pointer" onClick={handleSignout}> Sign Out</span>
       </div>
       <p className=" text-red-700 mt-5 ">{error && "Somthing Went Wrong !"}</p>
       <p className=" text-green-700 mt-5  self-center">{updateSuccess && "User is Updated Successfully !"}</p>
