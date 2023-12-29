@@ -4,6 +4,7 @@ const initialState = {
   currentUser: null,
   loading: false,
   error: false,
+  sortOption: "descending", // Add this line for sorting option
 };
 
 const userSlice = createSlice({
@@ -54,6 +55,10 @@ const userSlice = createSlice({
       state.error=false;
 
     },
+    updateSortOption: (state, action) => {
+      state.filter = action.payload;
+    },
+     
   },
 });
 
@@ -67,6 +72,7 @@ export const {
   deleteUserFailure,
   deleteUserStart,
   deleteUserSuccess,
-  signOut
+  signOut,
+  updateSortOption
 } = userSlice.actions;
 export default userSlice.reducer;

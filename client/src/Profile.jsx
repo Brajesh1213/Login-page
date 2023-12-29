@@ -6,11 +6,12 @@ import {
   getStorage,
   ref,
   uploadBytesResumable,
-} from "firebase/storage"; // Corrected import statement
+} from "firebase/storage"; 
 import {  useNavigate } from 'react-router-dom'
 import { app } from "./firebase";
 import{ useDispatch } from 'react-redux';
 import {updateUserFailure,updateUserSuccess,updateUserStart, deleteUserFailure, deleteUserStart,deleteUserSuccess, signOut} from './redux/user/userSlice.js'
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 
 const Profile = () => {
   const { currentUser ,loading,error} = useSelector((state) => state.user);
@@ -123,6 +124,12 @@ const handleDeleteAccount = async () =>{
     }
 
   }
+  const citiesByState = {
+    Bihar: ["Patna", "Ara", "Bikramganj"],
+    up: ["gorakhpur", "Agra"],
+    Mp: ["Bhopal", "Morena"],
+    Goa: ["Goa city"],
+  };
 
 
   // console.log(formdata)
@@ -157,7 +164,6 @@ const handleDeleteAccount = async () =>{
           )}
         </p>
 
-        {/* <div>{imagePercent}</div> */}
         <input
           type="text"
           defaultValue={currentUser.username}
@@ -178,7 +184,89 @@ const handleDeleteAccount = async () =>{
           id="password"
           placeholder="Password"
           className="uppercase bg-slate-100 rounded-lg p-3"
-          onChange={handlechange}        />
+          onChange={handlechange}   />
+
+
+          
+<input
+          type="text"
+          className="bg-slate-100 p-3 rounded-lg"
+          placeholder="phone"
+          required
+          id="phone"
+          value={formdata.phone}
+          onChange={handlechange}
+        />
+        <select
+          value={formdata.state}
+          onChange={
+            (e) =>
+            setFormData({ ...formdata, state: e.target.value, city: "" })
+          }
+        >
+          <option value="">Select State</option>
+          <option value="Bihar">Bihar</option>
+          <option value="up">up</option>
+          <option value="Mp">MP</option>
+          <option value="Goa">Goa</option>
+        </select>
+        {formdata.state && (
+          <select
+            value={formdata.city}
+            onChange={
+              (e) => setFormData({ ...formdata, city: e.target.value })}
+          >
+            <option value="">Select City</option>
+            {citiesByState[formdata.state].map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
+          </select>
+        )}
+        <RadioGroup
+          row
+          value={formdata.gender}
+          onChange={
+            (e) => setFormData({ ...formdata, gender: e.target.value })
+            }
+        >
+          <FormControlLabel value="Male" control={<Radio />} label="Male" />
+          <FormControlLabel value="Female" control={<Radio />} label="Female" />
+          <FormControlLabel value="Other" control={<Radio />} label="Other" />
+        </RadioGroup>
+
+        <RadioGroup
+          row
+          value={formdata.hearAbout}
+          onChange={
+            
+            (e) =>
+            setFormData({ ...formdata, hearAbout: e.target.value })
+          }
+        >
+          <FormControlLabel
+            value="LinkedIn"
+            control={<Radio />}
+            label="LinkedIn"
+          />
+          <FormControlLabel
+            value="Friends"
+            control={<Radio />}
+            label="Friends"
+          />
+          <FormControlLabel
+            value="job-portal"
+            control={<Radio />}
+            label="Job Portal"
+          />
+          <FormControlLabel value="Other" control={<Radio />} label="Other" />
+        </RadioGroup>
+
+ 
+
+
+
         <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-90 disabled:opacity-80">
           {loading? 'Loading....':'Update User'}
         </button>

@@ -26,6 +26,12 @@ export const updateUser = async (req, res, next) => {
           email: req.body.email,
           password: req.body.password,
           profilePicture: req.body.profilePicture,
+          phone:req.body.phone,
+          gender:req.body.gender,
+          howDidYouHear:req.body.howDidYouHear,
+          city:req.body.city,
+          state:req.body.state,
+
         },
       },
       { new: true }
@@ -55,3 +61,7 @@ export const updateUser = async (req, res, next) => {
   }
 
  }
+
+ export const signout = async (req, res) => {
+  res.clearCookie('access_token').status(200).json({ message: 'Signout Success' });
+};

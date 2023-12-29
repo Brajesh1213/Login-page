@@ -1,9 +1,12 @@
 import  express  from 'express';
 import dotenv from 'dotenv';
+
 dotenv.config();
 import userRoutes from './routes/User.route.js'
 import authRouter from './routes/auth.route.js'
+// import userDetail from './routes/userDetail.js'
 import cookieParser from 'cookie-parser';
+
 
 import mongoose from 'mongoose';
 // import { configDotenv } from 'dotenv';
@@ -25,6 +28,8 @@ app.listen(3000,()=>{
 
 app.use("/api/user",userRoutes);
 app.use('/api/auth',authRouter);
+// app.use('/dashboard',userDetail);
+
 
 app.use((err,req,res,next)=>{
 const statusCode=err.statusCode || 500;

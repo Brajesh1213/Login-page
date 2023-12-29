@@ -19,7 +19,7 @@ const Header = () => {
           </Link>
 
           <Link to='/profile'>
-            {currentUser ? (
+            {currentUser ? (  
               <img
                 src={currentUser.profilePicture}
                 alt="profile"

@@ -1,0 +1,14 @@
+/* ShowList.css */
+
+.custom-card {
+    width: 100%;
+    overflow: auto;
+    resize: horizontal;
+    background-color: #031424; /* Black background */
+    color: #ffffff; /* White text */
+  }
+  
+  .custom-actions {
+    flex: 0 1 120px;
+  }
+  
